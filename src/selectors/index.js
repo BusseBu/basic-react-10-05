@@ -12,7 +12,7 @@ export const articleListSelector = createSelector(
 export const loadingArticlesSelector = (state) => state.articles.loading
 
 const filtersSelector = (state) => state.filters
-const commentListSelector = (state) => state.comments
+
 export const filtersSelectionSelector = createSelector(
   filtersSelector,
   (filters) => filters.selected
@@ -38,8 +38,21 @@ export const filtratedArticlesSelector = createSelector(
   }
 )
 
+export const loadedCommentsSelector = (state) => state.comments.loaded
+
+export const loadingCommentsSelector = (state) => state.comments.loading
+
+export const commentsMapSelector = (state) => state.comments.entities
+
+export const commentListSelector = createSelector(
+  commentsMapSelector,
+  (commentsMap) => commentsMap.toJS()
+)
+
 export const createCommentSelector = () => {
-  return createSelector(commentListSelector, idSelector, (comments, id) => {
-    return comments.get(id)
-  })
+  return createSelector(
+    commentListSelector,
+    idSelector,
+    (comments, id) => comments[id]
+  )
 }

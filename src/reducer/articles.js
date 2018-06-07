@@ -15,7 +15,8 @@ const ArticleModel = new Record({
   text: null,
   date: null,
   loading: false,
-  comments: []
+  comments: [],
+  commentsLoaded: false
 })
 
 const ReducerRecord = new Record({

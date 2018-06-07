@@ -6,6 +6,7 @@ import {
   ADD_COMMENT,
   LOAD_ALL_ARTICLES,
   LOAD_ARTICLE,
+  LOAD_COMMENTS,
   SUCCESS,
   FAIL,
   START
@@ -82,6 +83,31 @@ export function loadArticle(id) {
       .catch((error) =>
         dispatch({
           type: LOAD_ARTICLE + FAIL,
+          payload: { id },
+          error
+        })
+      )
+  }
+}
+
+export function loadComments(id) {
+  return (dispatch) => {
+    dispatch({
+      type: LOAD_COMMENTS + START,
+      payload: { id }
+    })
+
+    fetchData(`/comment?article=${id}`)
+      .then((response) =>
+        dispatch({
+          type: LOAD_COMMENTS + SUCCESS,
+          payload: { id },
+          response
+        })
+      )
+      .catch((error) =>
+        dispatch({
+          type: LOAD_COMMENTS + FAIL,
           payload: { id },
           error
         })
