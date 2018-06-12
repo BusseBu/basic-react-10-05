@@ -4,6 +4,7 @@ import {
   CHANGE_DATE_RANGE,
   CHANGE_SELECTION,
   ADD_COMMENT,
+  LOAD_ALL_COMMENTS,
   LOAD_ALL_ARTICLES,
   LOAD_ARTICLE,
   LOAD_ARTICLE_COMMENTS,
@@ -95,5 +96,14 @@ export function loadArticleComments(articleId) {
     type: LOAD_ARTICLE_COMMENTS,
     payload: { articleId },
     callAPI: `/api/comment?article=${articleId}`
+  }
+}
+
+export function loadAllComments(page) {
+  const offset = 5 * (page - 1) + 5
+  return {
+    type: LOAD_ALL_COMMENTS,
+    payload: { page },
+    callAPI: `/api/comment?offset=${offset}&limit=5`
   }
 }

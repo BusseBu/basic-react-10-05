@@ -11,7 +11,7 @@ import './style.css'
 
 class CommentList extends Component {
   static propTypes = {
-    article: PropTypes.object.isRequired,
+    article: PropTypes.object,
     //from toggleOpen decorator
     isOpen: PropTypes.bool,
     toggleOpen: PropTypes.func

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Route, NavLink, Switch } from 'react-router-dom'
 import ArticleRoute from './components/routes/articles'
+import CommentPage from './components/comment-page'
 import UserForm from './components/user-form'
 import Filters from './components/filters'
 import Counter from './components/counter'
@@ -25,6 +26,11 @@ class App extends Component {
               Articles
             </NavLink>
           </div>
+          <div>
+            <NavLink to="/comments/1" activeStyle={{ color: 'red' }}>
+              Comments
+            </NavLink>
+          </div>
         </div>
         <UserForm />
         <Switch>
@@ -32,6 +38,7 @@ class App extends Component {
           <Route path="/filters" component={Filters} />
           <Route path="/articles/new" render={() => <h1>Add New Article</h1>} />
           <Route path="/articles" component={ArticleRoute} />
+          <Route path="/comments/:page" component={CommentPage} />
         </Switch>
       </div>
     )
